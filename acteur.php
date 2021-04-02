@@ -47,7 +47,7 @@
             <p><input type="submit" value="Envoyer"></p>
         </form>
         <h2>Commentaires</h2>
-    <?php
+      <?php
       // Show all the comments by time but ONLY show date from every user for this bank
       // Find the firstname from `accounts` by user_id from `posts`
       // How to get date from type`datetime`: SELECT DATE_FORMAT(column_name, '%d-%m-%Y') FROM tablename
@@ -56,15 +56,14 @@
         ON posts.user_id = accounts.id
         WHERE posts.bank_id = ?
         ORDER BY date_created DESC");
-      if(isset($_GET['acteur'])){
+
         $req->execute([$_GET['acteur']]);
         while ($data = $req->fetch()) { ?>
           <p><?php echo $data['first_name']; ?></p>
           <p><?php echo $data['date']; ?></p>
           <p><?php echo htmlspecialchars($data['comment']) ?></p>
         <?php }
-          $req->closeCursor();
-      }
+        $req->closeCursor();
     }
 ?>
 <!DOCTYPE html>
