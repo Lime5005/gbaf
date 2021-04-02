@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <option value="2">Quel est le nom de votre mère?</option>
       <option value="3">Où se trouve votre ville natale?</option>  
     </select><br>
-    <label for="answer">Votre réponse: </label><input type="text" name="answer" placeholder="Entrer votre réponse"><br>
-    <input type="submit" name="submit" value="Register">
+    <label for="answer">Votre réponse(Au moins 3 charactères): </label><input type="text" name="answer" placeholder="Entrer votre réponse"><br>
+    <input type="submit" name="submit" value="S'inscrire">
   </form>
 </body>
 </html>

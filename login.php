@@ -60,18 +60,19 @@
 </head>
 <body>
   <div>
-    <h1>Login form:</h1>
+    <h1>Connection:</h1>
+    <h3>Nouveau client? <a href="inscription.php">S'inscrire</a></h3>
     <form action="" method="POST">
       <label for="email">Username: </label>
       <input type="text" name="username">
       <br>
       <label for="password">Mot de passe: </label>
       <input type="password" name="password">
-      <br>
-      <input type="checkbox" name="remember_me">Remember me<br>
-      <input type="submit" name="submit" value="Submit">
-      <br>
       <p><a href="forget_password.php">Mot de passe oublié?</a></p>
+      <br>
+      <input type="checkbox" name="remember_me">Rester connecté<br>
+      <input type="submit" name="submit" value="S'identifier">
+      <br>
     </form>
   </div>
 </body>

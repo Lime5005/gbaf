@@ -61,10 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Changer Votre Mot de Passe ou d'autres infos</title>
+  <title>Changer Votre Mot de Passe</title>
 </head>
 <body>
-  <h1>Reset Form:</h1>
+  <h1>Changer votre mot de passe ou tout d'info:</h1>
   <form action="" method="POST">
     <label for="lastname">Nouveau nom: </label><input type="text" name="lastname" value="<?= $row['last_name']; ?>"><br>
     <label for="firstname">Nouveau prénom: </label><input type="text" name="firstname" value="<?= $row['first_name']; ?>"><br>
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <option value="Où se trouve votre ville natale?">Où se trouve votre ville natale?</option>  
     </select><br>
     <label for="answer">Votre réponse: </label><input type="text" name="answer" placeholder="<?= $row['answer']; ?>"><br>
-    <input type="submit" name="modify" value="Modify">
+    <input type="submit" name="modify" value="Modifier">
   </form>
 </body>
 </html>
