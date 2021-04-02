@@ -1,56 +1,60 @@
 <?php
 session_start();
 
-$connection = new PDO('mysql:host=localhost;dbname=gbaf;charset=UTF8', '', ''); // Change password for test
+if (isset($_SESSION['username']) && isset($_SESSION['secret_question']) && isset($_SESSION['answer'])) {
+  require_once('connect.php');
 
-// Find the user:
-$req = $connection->prepare('SELECT * FROM accounts WHERE username=? AND secret_question=? AND answer=? LIMIT 1');
-$req->execute([$_SESSION['username'], $_SESSION['secret_question'], $_SESSION['answer']]);
+  // Find the user:
+  $req = $connection->prepare('SELECT * FROM accounts WHERE username=? AND secret_question=?  AND answer=? LIMIT 1');
+  $req->execute([$_SESSION['username'], $_SESSION['secret_question'], $_SESSION['answer']]);
 
-$row = $req->fetch(PDO::FETCH_ASSOC);
-// print_r($row);
+  $row = $req->fetch(PDO::FETCH_ASSOC);
+  // print_r($row);
 
-// Update all for this user:
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  try {
-    if (isset($_POST['modify'])) {
-      if (strlen($_POST['lastname']) < 2 || strlen($_POST['lastname']) > 10) {
-        throw new Exception("Nom non valide");
+  // Update all info for this user:
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    try {
+        if (isset($_POST['modify'])) {
+          if (strlen($_POST['lastname']) < 2 || strlen($_POST['lastname']) > 10) {
+            throw new Exception("Nom non valide");
+          }
+          $newLastName = $_POST['lastname'];
+
+          if (strlen($_POST['firstname']) < 2 || strlen($_POST['firstname']) > 10) {
+            throw new Exception("Prénom non valide");
+          }
+          $newFirstName = $_POST['firstname'];
+
+          if (strlen($_POST['username']) < 2 || strlen($_POST['username']) > 10) {
+            throw new Exception("Username non valide");
+          }
+          $newUserName = $_POST['username'];
+
+          if (strlen($_POST['password']) < 3 || strlen($_POST['password']) > 10) {
+            throw new Exception("Mot de passe non valide");
+          }
+          $newPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+          if (!isset($_POST['secret_question']) || strlen($_POST['answer']) < 3) {
+            throw new Exception("Question secrete ou réponse non valides");
+          }
+          $newSecretQuestion = $_POST['secret_question'];
+          $newAnswer = $_POST['answer'];
+
+          $modify->execute([$newLastName, $newFirstName, $newUserName, $newPassword, $newSecretQuestion, $newAnswer, $row['id']]);
+          $modify = $connection->prepare('UPDATE accounts SET last_name=?, first_name=?, username=?, password=?, secret_question=?, answer=? WHERE id=? LIMIT 1');
+
+          $_SESSION['lastname'] = $newLastName;
+          $_SESSION['firstname'] = $newFirstName;  
+          $_SESSION['username'] = $newUserName;
+
+          header("Location: ./index.php", true, 302);
+          exit();
+
       }
-      $newLastName = $_POST['lastname'];
-
-      if (strlen($_POST['firstname']) < 2 || strlen($_POST['firstname']) > 10) {
-        throw new Exception("Prénom non valide");
-      }
-      $newFirstName = $_POST['firstname'];
-
-      if (strlen($_POST['username']) < 2 || strlen($_POST['username']) > 10) {
-        throw new Exception("Username non valide");
-      }
-      $newUserName = $_POST['username'];
-
-      if (strlen($_POST['password']) < 3 || strlen($_POST['password']) > 10) {
-        throw new Exception("Mot de passe non valide");
-      }
-      $newPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-      if (!isset($_POST['secret_question']) || strlen($_POST['answer']) < 3) {
-        throw new Exception("Question secrete ou réponse non valides");
-      }
-      $newSecretQuestion = $_POST['secret_question'];
-      $newAnswer = $_POST['answer'];
-
-      $modify = $connection->prepare('UPDATE accounts SET last_name=?, first_name=?, username=?, password=?, secret_question=?, answer=? WHERE id=? LIMIT 1');
-      $modify->execute([$newLastName, $newFirstName, $newUserName, $newPassword, $newSecretQuestion, $newAnswer, $row['id']]);
-
-      $_SESSION['lastname'] = $newLastName;
-      $_SESSION['firstname'] = $newFirstName;
-
-      header("Location: ./index.php", true, 302);
-      exit();
+    } catch (Exception $e) {
+      echo $e->getMessage() . '<br>';
     }
-  } catch (Exception $e) {
-    echo $e->getMessage() . '<br>';
   }
 }
 ?>
@@ -78,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <option value="Quel est le nom de votre mère?">Quel est le nom de votre mère?</option>
       <option value="Où se trouve votre ville natale?">Où se trouve votre ville natale?</option>  
     </select><br>
-    <label for="answer">Votre réponse: </label><input type="text" name="answer" placeholder="<?= $row['answer']; ?>"><br>
+    <label for="answer">Votre réponse: </label><input type="text" name="answer" value="<?= $row['answer']; ?>"><br>
     <input type="submit" name="modify" value="Modifier">
   </form>
 </body>

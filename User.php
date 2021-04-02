@@ -75,7 +75,7 @@ class User {
       throw new Exception("Valeurs non valides");
     }
     
-    $connection = new PDO('mysql:host=localhost;dbname=gbaf;charset=UTF8', '', ''); // Change password for test
+   require_once('connect.php');
 
     $sql = 'INSERT INTO accounts (last_name, first_name, username, password, secret_question, answer) VALUES (?, ?, ?, ?, ?, ?)';
     $statement = $connection->prepare($sql);

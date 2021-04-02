@@ -3,28 +3,31 @@ session_start();
 
 $lastname;
 $firstname;
+$username;
 if (isset($_SESSION['lastname'])) $lastname = $_SESSION['lastname'];
 if (isset($_SESSION['firstname'])) $firstname = $_SESSION['firstname'];
+if (isset($_SESSION['username'])) $username = $_SESSION['username'];
 
 if (isset($_COOKIE['lastname'])) $lastname = $_COOKIE['lastname'];
 if (isset($_COOKIE['firstname'])) $firstname = $_COOKIE['firstname'];
+if (isset($_COOKIE['username'])) $username = $_COOKIE['username'];
 
-if (!isset($lastname) || !isset($firstname)) {
+if (!isset($lastname) || !isset($firstname) || !isset($username)) {
   header("Location: ./index.php", true, 302);
   exit();
 }
 
-$connection = new PDO('mysql:host=localhost;dbname=gbaf;charset=UTF8', '', ''); // Change password for test
+require_once('connect.php');
 
 // Find id of the user:
-$req = $connection->prepare('SELECT * FROM accounts WHERE last_name=? AND first_name=?');
+$req = $connection->prepare('SELECT * FROM accounts WHERE last_name=? AND first_name=? and username = ?');
 
-$req-> execute([$lastname, $firstname]);
+$req-> execute([$lastname, $firstname, $username]);
 
 $row = $req->fetch(PDO::FETCH_ASSOC);
 // print_r($row);
 
-// Update all for this user:
+// Update all info for this user:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['modify'])) {
     if (strlen($_POST['lastname']) < 2 || strlen($_POST['lastname']) > 10) {
@@ -58,7 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $_SESSION['lastname'] = $newLastName;
     $_SESSION['firstname'] = $newFirstName;
-
+    $_SESSION['username'] = $newUserName;
+ 
     header("Location: ./index.php", true, 302);
     exit();
   }
@@ -74,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <title>Page des Paramètres</title>
 </head>
 <body>
-  <h1>Modify Form:</h1>
+  <h1>Form Pour Modifier:</h1>
   <form action="" method="POST">
     <label for="lastname">Nouveau nom: </label><input type="text" name="lastname" value="<?= $row['last_name']; ?>"><br>
     <label for="firstname">Nouveau prénom: </label><input type="text" name="firstname" value="<?= $row['first_name']; ?>"><br>
@@ -88,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <option value="Quel est le nom de votre mère?">Quel est le nom de votre mère?</option>
       <option value="Où se trouve votre ville natale?">Où se trouve votre ville natale?</option>  
     </select><br>
-    <label for="answer">Votre réponse: </label><input type="text" name="answer" placeholder="<?= $row['answer']; ?>"><br>
+    <label for="answer">Votre réponse: </label><input type="text" name="answer" value="<?= $row['answer']; ?>"><br>
     <input type="submit" name="modify" value="Modifier">
   </form>
 </body>
