@@ -67,18 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit();
   }
 }
+include_once('header.php');
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page des Paramètres</title>
-</head>
-<body>
-  <h1>Form Pour Modifier:</h1>
+  <h1>Modifier votre compte:</h1>
   <form action="" method="POST">
     <label for="lastname">Nouveau nom: </label><input type="text" name="lastname" value="<?= $row['last_name']; ?>"><br>
     <label for="firstname">Nouveau prénom: </label><input type="text" name="firstname" value="<?= $row['first_name']; ?>"><br>
@@ -95,5 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <label for="answer">Votre réponse: </label><input type="text" name="answer" value="<?= $row['answer']; ?>"><br>
     <input type="submit" name="modify" value="Modifier">
   </form>
-</body>
-</html>
+
+<?php
+include_once('footer.php');
+?>

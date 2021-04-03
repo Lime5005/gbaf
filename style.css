@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo&family=IBM+Plex+Serif:wght@300&display=swap');
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%232035d4' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    color: black;
+    text-align: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container {
+    width: auto;
+    max-width: 1200px;
+    /* top&bottom left&right */
+    padding: 20px 30px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+#top-header {
+    background: rgb(1, 47, 51);
+    background: linear-gradient(90deg, rgba(1, 47, 51, 1) 0%, rgba(3, 117, 108, 1) 42%, rgba(7, 231, 217, 1) 100%);
+    padding: 12px;
+    height: 100px;
+    text-align: right;
+}
+
+li {
+    list-style: none;
+}
+
+p {
+    font-family: IBM Plex Sans, sans-serif;
+    font-weight: 300;
+}
+
+h3 {
+    font-family: 'Arimo', sans-serif;
+    font-weight: bold;
+}
+
+#middle-page {
+    background: #ecfefa;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.post {
+    justify-content: center;
+}
+
+.card {
+    margin: auto;
+}
+
+img {
+    width: 30%;
+    height: 10%;
+}
+
+#bottom-footer {
+    color: white;
+    background: dimgray;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}

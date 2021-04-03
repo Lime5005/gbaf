@@ -27,13 +27,14 @@
       require_once('connect.php');
       $req = $connection->prepare('SELECT id, logo, name, description FROM acteurs WHERE id=?');
       $req->execute([$_GET['acteur']]);
-      $data = $req->fetch();?>
+      $data = $req->fetch();
+      ?>
         <p><a href="index.php">Retour à la page d'accueil</a></p>
         <div class="post">
+          <p><img src="images/<?php echo $data['logo']; ?>" alt="logo" height="130" width="450"></p>
           <h3>
             <?php echo $data['name']; ?>
           </h3>
-          <p><img src="images/<?php echo $data['logo']; ?>" alt="logo" height="130" width="450"></p>
           <p>
             <?php echo nl2br(htmlspecialchars($data['description'])); ?>
           </p>
@@ -65,16 +66,5 @@
         <?php }
         $req->closeCursor();
     }
+include_once('footer.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page d'Acteur</title>
-</head>
-<body>
-
-</body>
-</html>

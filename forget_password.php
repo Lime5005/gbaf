@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['username'] = $row['username'];
             $_SESSION['secret_question'] = $row['secret_question'];
             $_SESSION['answer'] = $row['answer'];
-            header("Location: ./recover.php", true, 302);
+            header("Location: ./modify_account.php", true, 302);
             exit();
           }
         }
@@ -34,18 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
   }
 }
-  
+include_once('header.php');
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Retrouver votre compte</title>
-</head>
-<body>
   <h2>Retrouver votre compte avec la question secrète:</h2>
   <form action="" method="POST">
     <label for="username">Username:</label><input type="text" name="username">
@@ -59,5 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <label for="answer">Votre réponse que vous avez enregistré: </label><input type="text" name="answer" placeholder="Entrer votre réponse"><br>
     <input type="submit" name="recover" value="Retrouver mon compte">
   </form>
-</body>
-</html>
+<?php
+include_once('footer.php');
+?>
