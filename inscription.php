@@ -2,6 +2,9 @@
 
 include_once('User.php');
 
+$success = null;
+$error = null;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $user = new User();
   try {
@@ -13,19 +16,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $user->saveToDatabase();
 
-    echo 'User created<br>';
-    header("Location: ./index.php", true, 302);
-    exit();
+    $success = true;
+    // echo 'User created<br>';
+    // header("Location: ./index.php", true, 302);
+    // exit();
   } catch (Exception $e) {
-    echo $e->getMessage() . '<br>';
+    $error = $e->getMessage();
   }
 }
 include_once('header.php');
 ?>
 
   <h1>Bienvenue:</h1>
-  <h3>Déjà salarié? <a href="login.php">Login</a></h3>
+  <h3>Déjà salarié? <a href="login.php">S'identifier</a></h3>
   <form action="" method="POST">
+    <?php
+      if (isset($success)) {
+        echo '<div class="alert-success" role="alert">votre compte a bien été créé!</div>';
+        echo '<div><a href="login.php">Connectez vous dès maintenant</a></div><br>';
+      }
+      if (isset($error)) {
+        echo '<div class="alert-danger" role="alert">' . $error . '</div>';
+      }
+    ?>
     <label for="lastname">Nom(Entre 2 à 10 charactères): </label><input type="text" name="lastname" placeholder="Entrer votre nom"><br>
     <label for="firstname">Prénom(Entre 2 à 10 charactères): </label><input type="text" name="firstname" placeholder="Entrer votre prénom"><br>
     <label for="username">Username(Entre 2 à 10 charactères): </label><input type="text" name="username" placeholder="Entrer votre username"><br>

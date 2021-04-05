@@ -37,6 +37,7 @@
           </p>
           <br>
           <button class="comment_btn" onclick="myComment()">Nouveau commentaire</button>
+          <p class="alert-danger"><?php if(isset($_SESSION['error'])) echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
           <div class="vote-comment-btns">
             <div class="vote_btns <?= Vote::getClass($vote) ?>">
               <form action="insertVote.php?ref=acteurs&ref_id=<?= $data['id']; ?>&vote=1" method="POST">

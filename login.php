@@ -23,44 +23,54 @@
     $req = $connection->prepare('SELECT last_name, first_name, username, password FROM accounts WHERE username=?');
     $req->execute([$_POST['username']]);
 
-    if ($req->rowCount() == 0) {
-      echo "Incorrect username/mot de passe<br />";
-    } else {
-      // $row = all the info as an object
-      $row = $req->fetch(PDO::FETCH_ASSOC);
-      // print_r($row);
-      if (!password_verify($_POST['password'], $row['password'])) {
-        echo "Incorrect mot de passe<br />";
+    $error = null;
+    try {
+      if ($req->rowCount() == 0) {
+        throw new Exception("Username/mot de passe non trouvé");
       } else {
-        $_SESSION['lastname'] = $row['last_name'];
-        $_SESSION['firstname'] = $row['first_name'];
-        $_SESSION['username'] = $row['username'];
+        // $row = all the info as an object
+        $row = $req->fetch(PDO::FETCH_ASSOC);
+        // print_r($row);
+        if (!password_verify($_POST['password'], $row['password'])) {
+          throw new Exception("Mot de passe incorrect");
+        } else {
+          $_SESSION['lastname'] = $row['last_name'];
+          $_SESSION['firstname'] = $row['first_name'];
+          $_SESSION['username'] = $row['username'];
 
-        if (!empty($_POST['remember_me'])) {
-          setcookie('username', $row['username'], time() + 3600 * 24 * 30);
-          setcookie('lastname', $row['last_name'], time() + 3600 * 24 * 30);
-          setcookie('firstname', $row['first_name'], time() + 3600 * 24 * 30);
+          if (!empty($_POST['remember_me'])) {
+            setcookie('username', $row['username'], time() + 3600 * 24 * 30);
+            setcookie('lastname', $row['last_name'], time() + 3600 * 24 * 30);
+            setcookie('firstname', $row['first_name'], time() + 3600 * 24 * 30);
 
+          }
+
+          header("Location: ./index.php", true, 302);
+          exit();
         }
-
-        header("Location: ./index.php", true, 302);
-        exit();
       }
+    } catch (Exception $e) {
+      $error = $e->getMessage();
     }
   }
   include_once('header.php');
 ?>
 
-    <h1>Connection:</h1>
-    <h3>Nouveau client? &nbsp;<a href="inscription.php">S'inscrire</a></h3>
+    <h1>S'identifier:</h1>
+    <h3>Nouveau salarié? &nbsp;<a href="inscription.php">S'inscrire</a></h3>
+    <h4>Username et mots de passe</h4>
+    <?php
+      if (isset($error)) {
+        echo '<div class="alert-danger" role="alert">' . $error . '</div><br>';
+      }
+    ?>
     <form action="" method="POST">
-      <label for="email">Username: </label>
+      <label for="username">Username: </label>
       <input type="text" name="username">
       <br>
       <label for="password">Mot de passe: </label>
       <input type="password" name="password">
       <p><a href="forget_password.php">Mot de passe oublié?</a></p>
-      <br>
       <input type="checkbox" name="remember_me">Rester connecté<br>
       <input type="submit" name="submit" value="S'identifier">
       <br>
