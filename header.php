@@ -12,19 +12,19 @@ des différentes banques françaises.">
 
 </head>
 <body>
-<div id="container">
-  <div id="top-header">
-    <header>
-      <ul>
-        <?php if(isset($firstname) && isset($lastname)) echo '<p>Bonjour ' . $lastname . ' ' . $firstname . '</p>';?>
-        <?php if(isset($_SESSION['username']) || isset($_SESSION['firstname']) || isset($_SESSION['lastname'])) {?> 
-          <li><a href="logout.php">Se déconnecter</a></li>
-          <br>
-          <li><a href="modify_account.php">Paramètres du compte</a></li>
-          <br>
-       <?php } ?>
-
-      </ul>
-    </header>
+  <div id="nav-bar">
+    <div class="logo">
+      <a href="index.php"><img class="primary-icon" src="images/logo_gbaf.png" alt="logo"></a>
+    </div>
+    <nav>
+        <ul>
+          <?php if(isset($firstname) && isset($lastname)) echo '<li>Bonjour ' . $lastname . ' ' . $firstname . '</li>';?>
+          <?php if(isset($_SESSION['username']) || isset($_SESSION['firstname']) || isset($_SESSION['lastname'])) {?>
+            <li><a href="logout.php">Se déconnecter</a></li>
+            <li><a href="modify_account.php">Paramètres du compte</a></li>
+          <?php } ?>
+        </ul>
+    </nav>
   </div>
+<div id="container">
   <div id="middle-page">

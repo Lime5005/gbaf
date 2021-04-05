@@ -11,30 +11,67 @@ body {
     color: black;
     text-align: auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 #container {
-    width: auto;
-    max-width: 1200px;
+    width: 1200px;
     /* top&bottom left&right */
     padding: 20px 30px;
+    margin-top: 120px;
+    margin-bottom: 30px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.4);
     box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
-#top-header {
+#nav-bar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    color: black;
     background: rgb(1, 47, 51);
     background: linear-gradient(90deg, rgba(1, 47, 51, 1) 0%, rgba(3, 117, 108, 1) 42%, rgba(7, 231, 217, 1) 100%);
-    padding: 12px;
-    height: 100px;
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-li {
-    list-style: none;
+nav {
+    float: right;
+}
+
+.primary-icon {
+    width: 80px;
+    height: 90px;
+    float: left;
+    margin: 5px 0px 5px 90px;
+}
+
+#nav-bar ul {
+    margin-right: 20px;
+}
+
+#nav-bar ul li {
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'Arimo', sans-serif;
+    margin: 0 20px 0 20px;
+}
+
+#nav-bar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+#nav-bar ul a:hover {
+    color: aqua;
+}
+
+.return-home a {
+    text-decoration: none;
 }
 
 p {
@@ -42,15 +79,56 @@ p {
     font-weight: 300;
 }
 
+h2,
 h3 {
     font-family: 'Arimo', sans-serif;
-    font-weight: bold;
 }
 
 #middle-page {
     background: #ecfefa;
     flex-direction: row;
     justify-content: center;
+}
+
+.vote_like,
+.vote_dislike {
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    margin: 0 0 0 10px;
+    padding: 0;
+    transition: color 0.3s;
+}
+
+.vote_like:hover,
+.is-liked .vote_like {
+    color: green;
+}
+
+.vote_dislike:hover,
+.is-disliked .vote_dislike {
+    color: red;
+}
+
+.vote-comment-btns {
+    margin-right: 20px;
+    text-align: right;
+}
+
+.comment_btn {
+    margin-right: 20px;
+}
+
+.vote_btns {
+    text-align: right;
+}
+
+.vote_btns form {
+    display: inline-block;
+}
+
+.vote_btn {
+    display: inline-block;
 }
 
 .post {

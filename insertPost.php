@@ -1,5 +1,7 @@
 <?php
   
+  require_once('session.php');
+
   // Insert new comment:
   if (isset($_COOKIE['acteur_id'])) {
     // echo "value is :" . $_COOKIE['acteur_id'];

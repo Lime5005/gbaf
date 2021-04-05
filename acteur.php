@@ -1,52 +1,77 @@
 <?php
 
-    session_start();
+    require_once('session.php');
 
-    $lastname;
-    $firstname;
-    $username;
     $today = date("Y-m-d");
-
-    if (isset($_SESSION['lastname'])) $lastname = $_SESSION['lastname'];
-    if (isset($_SESSION['firstname'])) $firstname = $_SESSION['firstname'];
-    if (isset($_SESSION['username'])) $username = $_SESSION['username'];
-
-    if (isset($_COOKIE['lastname'])) $lastname = $_COOKIE['lastname'];
-    if (isset($_COOKIE['firstname'])) $firstname = $_COOKIE['firstname'];
-    if (isset($_COOKIE['username'])) $username = $_COOKIE['username'];
-
-    if (!isset($lastname) || !isset($firstname) || !isset($username)) {
-      header("Location: ./index.php", true, 302);
-      exit();
-    }
 
     if(isset($_GET['acteur'])) {
 
       setcookie("acteur_id", $_GET['acteur'], time()+(60*60*24));
 
       require_once('connect.php');
-      $req = $connection->prepare('SELECT id, logo, name, description FROM acteurs WHERE id=?');
+      require_once('Vote.php');
+
+      // Show if the user voted for this acteur, green or red
+      $vote = false;
+      $reqVote = $connection->prepare('SELECT * FROM votes WHERE ref=? AND ref_id=? AND user_id=(SELECT id FROM accounts WHERE username=?)');
+      $reqVote->execute(['acteurs', $_GET['acteur'], $_SESSION['username']]);
+
+      $vote = $reqVote->fetch();
+
+      // Get the acteur
+      $req = $connection->prepare('SELECT * FROM acteurs WHERE id=?');
       $req->execute([$_GET['acteur']]);
       $data = $req->fetch();
+
+      include_once('header.php');
+      // var_dump($data);
       ?>
-        <p><a href="index.php">Retour à la page d'accueil</a></p>
+        <button class="return-home"><a href="index.php">Retour à la page d'accueil</a></button>
         <div class="post">
           <p><img src="images/<?php echo $data['logo']; ?>" alt="logo" height="130" width="450"></p>
-          <h3>
+          <h2>
             <?php echo $data['name']; ?>
-          </h3>
+          </h2>
           <p>
             <?php echo nl2br(htmlspecialchars($data['description'])); ?>
           </p>
+          <br>
+          <button class="comment_btn" onclick="myComment()">Nouveau commentaire</button>
+          <div class="vote-comment-btns">
+            <div class="vote_btns <?= Vote::getClass($vote) ?>">
+              <form action="insertVote.php?ref=acteurs&ref_id=<?= $data['id']; ?>&vote=1" method="POST">
+                <button type="submit" class="vote_btn vote_like">
+                  <i class="fas fa-thumbs-up"></i>&nbsp;<?= $data['like_count'] ?>
+                </button>
+              </form>
+              <form action="insertVote.php?ref=acteurs&ref_id=<?= $data['id']; ?>&vote=-1" method="POST">
+                <button type="submit" class="vote_btn vote_dislike">
+                  <i class="fa fa-thumbs-down" aria-hidden="true"></i>&nbsp;<?= $data['dislike_count'] ?>
+                </button>
+              </form>
+            </div>
+          </div>
+          <br>
         </div>
-        <h2>Laisser un commentaire:</h2>
-        <form action="insertPost.php" method="POST">
-            <p><label for="author">Author:</label><input type="text" name="author" id="author" value="<?= $firstname ?>"></p>
-            <p><label for="date">Date:</label><input type="date" name="date" id="date" value="<?= $today ?>"></p>
+        <script>
+          function myComment() {
+            let form = document.getElementById("comment");
+            if (form.style.display === "none") {
+              form.style.display = "block";
+            } else {
+              form.style.display = "none";
+            }
+          }
+        </script>
+        <div id="comment" style="display: none">
+          <form action="insertPost.php" method="POST">
+              <p><label for="author">Prénom:</label><input type="text" name="author" id="author" value="<?= $firstname ?>"></p>
+              <p><label for="date">Date:</label><input type="date" name="date" id="date" value="<?= $today ?>"></p>
 
-            <p><label for="comment">Votre commentaire:</label><textarea name="comment" id="comment" cols="50" rows="5"></textarea></p>
-            <p><input type="submit" value="Envoyer"></p>
-        </form>
+              <p><label for="comment">Votre commentaire:</label><textarea name="comment" id="comment" cols="50" rows="5"></textarea></p>
+              <p><input type="submit" value="Envoyer"></p>
+          </form>
+          </div>
         <h2>Commentaires</h2>
       <?php
       // Show all the comments by time but ONLY show date from every user for this bank
