@@ -13,7 +13,7 @@
   if (isset($_COOKIE['firstname'])) $firstname = $_COOKIE['firstname'];
   if (isset($_COOKIE['username'])) $username = $_COOKIE['username'];
 
-  if (isset($username)) {
+  if (isset($username) && isset($lastname) && isset($firstname)) {
     header("Location: ./index.php", true, 302);
     exit();
   }
@@ -58,14 +58,14 @@
 
     <h1>S'identifier:</h1>
     <h3>Nouveau salarié? &nbsp;<a href="inscription.php">S'inscrire</a></h3>
-    <h4>Username et mots de passe</h4>
+    <h4>Entrer votre nom d'utilisateur et mots de passe</h4>
     <?php
       if (isset($error)) {
         echo '<div class="alert-danger" role="alert">' . $error . '</div><br>';
       }
     ?>
     <form action="" method="POST">
-      <label for="username">Username: </label>
+      <label for="username">Nom d'utilisateur: </label>
       <input type="text" name="username">
       <br>
       <label for="password">Mot de passe: </label>

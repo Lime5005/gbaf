@@ -36,8 +36,8 @@
             <?php echo nl2br(htmlspecialchars($data['description'])); ?>
           </p>
           <br>
-          <button class="comment_btn" onclick="myComment()">Nouveau commentaire</button>
           <p class="alert-danger"><?php if(isset($_SESSION['error'])) echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+          <button class="comment_btn" onclick="myComment()">Nouveau commentaire</button>
           <div class="vote-comment-btns">
             <div class="vote_btns <?= Vote::getClass($vote) ?>">
               <form action="insertVote.php?ref=acteurs&ref_id=<?= $data['id']; ?>&vote=1" method="POST">
@@ -77,7 +77,7 @@
       <?php
       // Show all the comments by time but ONLY show date from every user for this bank
       // Find the firstname from `accounts` by user_id from `posts`
-      // How to get date from type`datetime`: SELECT DATE_FORMAT(column_name, '%d-%m-%Y') FROM tablename
+      // How to get date from type`datetime`: SELECT DATE_FORMAT(column_name, '%d-%m/%b-%Y') FROM tablename
       $req = $connection->prepare("SELECT bank_id, user_id, comment, DATE_FORMAT(date_created, '%d-%m-%Y') as date, first_name FROM posts
         JOIN accounts
         ON posts.user_id = accounts.id
@@ -86,9 +86,9 @@
 
         $req->execute([$_GET['acteur']]);
         while ($data = $req->fetch()) { ?>
-          <p><?php echo $data['first_name']; ?></p>
-          <p><?php echo $data['date']; ?></p>
-          <p><?php echo htmlspecialchars($data['comment']) ?></p>
+          <p><?php echo '<i class="fas fa-user-circle"></i> ' . '<span class="name-comment">' .
+           $data['first_name'] . '</span>'; ?><span class="date-comment"><?php echo '&nbsp;&nbsp;' . $data['date']; ?></span></p>
+          <p class="text-comment"><?php echo htmlspecialchars($data['comment']) ?></p>
         <?php }
         $req->closeCursor();
     }

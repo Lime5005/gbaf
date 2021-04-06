@@ -5,7 +5,7 @@
     // echo "value is :" . $_COOKIE['acteur_id'];
     try {
       if (!isset($_POST['submit']) && ($_POST['author'] == '' || $_POST['date'] == '' || $_POST['comment'] == '') ) {
-        throw new Exception("Entrer un commentaire avant d'envoyer");
+        throw new Exception("veuillez remplir tous les champs avant d'envoyer");
       } else {
         require_once('connect.php');
         $req = $connection->prepare('INSERT INTO posts (bank_id, date_created, comment,user_id) VALUES (?, NOW(), ?,  (SELECT accounts.id FROM accounts WHERE accounts.first_name=?))');

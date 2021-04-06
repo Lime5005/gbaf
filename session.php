@@ -13,7 +13,7 @@ if (isset($_COOKIE['firstname'])) $firstname = $_COOKIE['firstname'];
 if (isset($_COOKIE['username'])) $username = $_COOKIE['username'];
 
 
-if (!isset($username)) {
+if (!isset($username) || !isset($firstname) || !isset($lastname)) {
   header("Location: ./login.php", true, 302);
   exit();
 }

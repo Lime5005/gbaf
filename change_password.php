@@ -1,20 +1,32 @@
 <?php
 
-require_once('session.php');
+session_start();
+
+$username;
+$secretQuestion;
+$answer;
+if (isset($_SESSION['username'])) $username = $_SESSION['username'];
+if (isset($_SESSION['secret_question'])) $secretQuestion = $_SESSION['secret_question'];
+if (isset($_SESSION['answer'])) $answer = $_SESSION['answer'];
+
+if (!isset($username) || !isset($secretQuestion) || !isset($answer)) {
+  header("Location: ./login.php", true, 302);
+  exit();
+}
 
 require_once('connect.php');
 
 // Find id of the user:
-$req = $connection->prepare('SELECT * FROM accounts WHERE last_name=? AND first_name=? AND username=?');
+$req = $connection->prepare('SELECT * FROM accounts WHERE username=? AND secret_question=? AND answer=?');
 
-$req-> execute([$lastname, $firstname, $username]);
+$req-> execute([$username, $secretQuestion, $answer]);
 
 $row = $req->fetch(PDO::FETCH_ASSOC);
 // print_r($row);
 
 // Update all for this user:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  if (isset($_POST['modify'])) {
+  if (isset($_POST['recover'])) {
 
     $error = null;
     try {
@@ -61,27 +73,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 include_once('header.php');
 ?>
 
-  <h1>Modifier votre compte:</h1>
+  <h1>Ajouter un nouveau mot de passe:</h1>
+  <p>(Ou tous les champs nécessaires)</p>
+
   <?php
       if (isset($error)) {
         echo '<div class="alert-danger" role="alert">' . $error . '</div><br>';
       }
   ?>
   <form action="" method="POST">
-    <label for="lastname">Nouveau nom: </label><input type="text" name="lastname" value="<?php if(isset($lastname)) echo $lastname; ?>"><br>
-    <label for="firstname">Nouveau prénom: </label><input type="text" name="firstname" value="<?php if(isset($firstname)) echo $firstname; ?>"><br>
+    <label for="lastname">Nouveau nom: </label><input type="text" name="lastname"><br>
+    <label for="firstname">Nouveau prénom: </label><input type="text" name="firstname"><br>
     <label for="username">Nouveau nom d'utilisateur: </label><input type="text" name="username" value="<?php if(isset($username)) echo $username; ?>"><br>
 
     <label for="password">Nouveau mot de passe: </label><input type="password" name="password"><br>
 
-    <label for="secret_question">Choisir une question secrete: </label><select name="secret_question" id="secret_question">
+    <label for="secret_question">Choisir une question secrete: </label>
+    <select name="secret_question" id="secret_question">
       <option value="">--Choisir une option--</option>
       <option value="Quelle est votre couleur préférée?">Quelle est votre couleur préférée?</option>
       <option value="Quel est le nom de votre mère?">Quel est le nom de votre mère?</option>
-      <option value="Où se trouve votre ville natale?">Où se trouve votre ville natale?</option>  
+      <option value="Où se trouve votre ville natale?">Où se trouve votre ville natale?</option>
     </select><br>
-    <label for="answer">Votre réponse: </label><input type="text" name="answer" value="<?= $row['answer']; ?>"><br>
-    <input type="submit" name="modify" value="Modifier">
+    <label for="answer">Votre réponse: </label><input type="text" name="answer" value="<?= $answer ?>"><br>
+    <input type="submit" name="recover" value="Enregistrer">
   </form>
 <?php
 include_once('footer.php');

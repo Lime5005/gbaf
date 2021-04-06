@@ -6,7 +6,6 @@ require_once('session.php');
 require_once('connect.php');
 $req = $connection->prepare('SELECT id, logo, name, SUBSTRING(description, 1, 220) as detail FROM acteurs');
 $req->execute();
-
 if ($req->rowCount() == 0) {
   echo "<br>Pas d'acteur.<br />";
 } else {
@@ -24,5 +23,6 @@ if ($req->rowCount() == 0) {
     <?php }
   }
 }
+
 include_once('footer.php');
 ?>

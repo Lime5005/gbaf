@@ -1,3 +1,6 @@
 <?php
-$connection = new PDO('mysql:host=localhost;dbname=gbaf;charset=UTF8', '', '');
+$database = 'gbaf';
+$user = '';
+$password = '';
+$connection = new PDO("mysql:host=localhost;dbname=$database;charset=UTF8", $user, $password);
 ?>

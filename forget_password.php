@@ -17,15 +17,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $req->execute([$_POST['username'], $_POST['secret_question'], $_POST['answer']]);
       
         if ($req->rowCount() == 0) {
-          throw new Exception("Username ou question secrète/réponse incorrect");
+          throw new Exception("Nom d'utilisateur ou question secrète/réponse incorrect");
         } else {
           $row = $req->fetch(PDO::FETCH_ASSOC);
           // print_r($row);
           if ($_POST['username'] == $row['username'] && $_POST['secret_question'] == $row['secret_question'] && $_POST['answer'] == $row['answer']) {
             $_SESSION['username'] = $row['username'];
-            $_SESSION['firstname'] = $row['first_name'];
-            $_SESSION['lastname'] = $row['last_name'];
-            header("Location: ./modify_account.php", true, 302);
+            $_SESSION['secret_question'] = $row['secret_question'];
+            $_SESSION['answer'] = $row['answer'];
+            header("Location: ./change_password.php", true, 302);
             exit();
           }
         }
