@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Arimo&family=IBM+Plex+Serif:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=IBM+Plex+Serif&family=Montserrat:wght@300&display=swap');
 html {
     box-sizing: border-box;
 }
@@ -16,12 +16,12 @@ body {
 }
 
 #container {
-    width: 1200px;
-    min-height: max-content;
+    position: relative;
+    width: 90vw;
     /* top&bottom left&right */
-    padding: 20px 30px;
-    margin-top: 120px;
-    margin-bottom: 30px;
+    padding: 20px 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.4);
     box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
@@ -29,7 +29,7 @@ body {
 
 #nav-bar {
     width: 100%;
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     color: black;
     background: rgb(1, 47, 51);
@@ -40,7 +40,7 @@ body {
 }
 
 
-/* Error handling */
+/* Error handling in user entry*/
 
 .alert-success {
     background-color: green;
@@ -93,6 +93,7 @@ nav {
 
 .text-comment {
     margin-left: 20px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .return-home a {
@@ -100,8 +101,7 @@ nav {
 }
 
 p {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 300;
+    font-family: 'IBM Plex Serif', serif;
 }
 
 h2,
@@ -170,10 +170,40 @@ img {
 }
 
 #bottom-footer {
+    width: 100%;
+    margin-bottom: 0;
     color: white;
     background: #012f33;
     margin-top: 20px;
     padding: 10px;
     display: flex;
     justify-content: center;
+}
+
+
+/* Media Query: Medium Smartphone (Vertical), starting from 480px */
+
+@media screen and (max-width: 480px) {
+    body {
+        min-height: unset;
+        width: 100vw;
+        font-size: 14px;
+    }
+    #container {
+        font-size: 14px;
+        margin-bottom: 0;
+        box-shadow: none;
+        /* text-align: center; */
+        /* min-height: 245px; */
+    }
+    /* change nav-bar to be smaller */
+    #nav-bar ul {
+        flex-direction: column;
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+    .nav-link {
+        margin: 2px;
+        font-size: 14px;
+    }
 }
