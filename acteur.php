@@ -26,9 +26,8 @@
       include_once('header.php');
       // var_dump($data);
       ?>
-        <button class="return-home"><a href="index.php">Retour à la page d'accueil</a></button>
         <div class="post">
-          <p><img src="images/<?php echo $data['logo']; ?>" alt="logo" height="130" width="450"></p>
+          <p><img class="post-image" src="images/<?php echo $data['logo']; ?>" alt="logo"></p>
           <h2>
             <?php echo $data['name']; ?>
           </h2>

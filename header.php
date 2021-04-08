@@ -9,23 +9,35 @@
   <title>GBAF | Le Groupement Banque-Assurance Français</title>
   <meta name="description" content="Groupement des ressources pour les salariés
 des différentes banques françaises.">
-  <meta name="keywords" content="banques français, groupement de des banques, sociétés d'assurances">
+  <meta name="keywords" content="banques françaises, groupement des banques, sociétés d'assurances">
 
 </head>
 <body>
-  <div id="nav-bar">
-    <div class="logo">
-      <a href="index.php"><img class="primary-icon" src="images/logo_gbaf.png" alt="logo"></a>
-    </div>
-    <nav>
+<div id="container">
+<header class="header">
+  <div class="header-container">
+    <div class="row align-items-center justify-content-between">
+      <div class="logo">
+        <a href="index.php"><img class="primary-icon" src="images/logo_gbaf.png" alt="logo"></a>
+      </div>
+      <div class="username">
+        <?php if(isset($firstname) && isset($lastname)) echo '<span><i class="fas fa-user-alt"></i>&nbsp; ' . $lastname . ' ' . $firstname . '</span>';?>
+      </div>
+      <input type="checkbox" id="nav-check">
+      <label for="nav-check" class="nav-toggler">
+        <span></span>
+      </label>
+      <nav class="nav">
         <ul>
-          <?php if(isset($firstname) && isset($lastname)) echo '<li><i class="fas fa-user-alt"></i>&nbsp; ' . $lastname . ' ' . $firstname . '</li>';?>
+          <li><a href="index.php" class="active">Page d'accueil</a></li>
           <?php if(isset($_SESSION['username']) && isset($_SESSION['firstname']) && isset($_SESSION['lastname'])) {?>
-            <li><a href="logout.php">Se déconnecter</a></li>
             <li><a href="modify_account.php">Paramètres du compte</a></li>
+            <li><a href="logout.php">Se déconnecter</a></li>
           <?php } ?>
         </ul>
-    </nav>
+      </nav>
+    </div>
   </div>
-<div id="container">
+</header>
+<div class="content">
   <div id="middle-page">
