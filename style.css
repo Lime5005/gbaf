@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=IBM+Plex+Serif&family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@300&family=Lato:wght@300&family=Montserrat:wght@500&display=swap');
 :root {
     --color-1: rgb(2, 95, 104);
 }
@@ -12,17 +12,13 @@ html,
 
 body {
     line-height: 1.5;
-    background-color: #E0FFFF;
+    background-color: #ffffff;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%232035d4' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
     color: black;
 }
 
 #container {
     position: relative;
-}
-
-a {
-    text-decoration: none;
 }
 
 ul {
@@ -40,19 +36,42 @@ ul {
 
 .align-items-center {
     align-items: center;
+    /* align vertically in the middle */
 }
 
-.justify-content-between {
+.justify-content-around {
     justify-content: space-around;
+}
+
+.image-keep-ratio {
+    object-fit: cover;
 }
 
 
 /* header */
 
+.logo-user {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.username {
+    margin-left: 130px;
+}
+
 .header {
     background-color: var(--color-1);
     padding: 0;
     position: relative;
+}
+
+.header-container {
+    /* Keep navbar items focus in the middle */
+    max-width: 1100px;
+    margin: 0 auto;
+    /* For tablet user */
+    padding: 0 40px;
 }
 
 .header .nav ul li {
@@ -65,14 +84,22 @@ ul {
     font-size: 16px;
     padding: 10px 0;
     color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
     text-transform: capitalize;
     transition: all 0.5s ease;
+}
+
+.header .nav ul li a:hover {
+    border-bottom: 2px solid #fff;
 }
 
 .header .nav ul li a:hover,
 .header .nav ul li a.active {
     color: #ffffff;
 }
+
+
+/* nav toggler for mobile */
 
 .header #nav-check {
     position: absolute;
@@ -125,33 +152,47 @@ ul {
 /* Error handling in user entry*/
 
 .alert-success {
+    position: relative;
+    top: 50%;
+    left: 27%;
+    width: 460px;
+    padding: 10px 0;
+    margin: 10px;
     background-color: green;
+    border-radius: 26px;
     color: white;
+    text-align: center;
 }
 
 .alert-danger {
+    position: relative;
+    top: 50%;
+    left: 27%;
+    width: 460px;
+    padding: 10px 0;
+    margin: 10px;
     background-color: red;
+    border-radius: 26px;
     color: white;
-}
-
-.primary-icon {
-    width: 70px;
-    height: 80px;
-    margin-top: 10px;
+    text-align: center;
 }
 
 
 /* index page */
 
-.content {
-    background: #E0FFFF;
+#content {
+    background: #FFFFFF;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%232035d4' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 
 .gbaf-description {
-    font-family: 'Times New Roman', Times, serif;
-    background: rgba(255, 255, 255, 0.7);
-    padding: 30px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #03ffee33;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 10px;
 }
 
 .gbaf-description ul {
@@ -159,8 +200,13 @@ ul {
     padding-left: 20px;
 }
 
+.gbaf-description p {
+    font-family: 'Lato', sans-serif;
+    margin: 10px 0;
+}
+
 #middle-page {
-    margin: 50px;
+    margin: 30px;
     flex-direction: row;
     justify-content: center;
 }
@@ -168,6 +214,7 @@ ul {
 .card {
     display: flex;
     margin: 20px 10px;
+    background-color: #d4f1f480;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     transition: 0.3s;
@@ -176,7 +223,7 @@ ul {
 .card-image {
     position: relative;
     width: 400px;
-    height: 130px;
+    height: 135px;
 }
 
 .card img {
@@ -201,26 +248,13 @@ ul {
 
 /* Single acteur page */
 
-.name-comment {
-    font-weight: bold;
-}
-
-.date-comment {
-    font-size: small;
-}
-
-.text-comment {
-    margin-left: 20px;
-    font-family: 'Montserrat', sans-serif;
-}
-
 p {
     font-family: 'IBM Plex Serif', serif;
 }
 
 h2,
 h3 {
-    font-family: 'Arimo', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .vote_like,
@@ -249,7 +283,19 @@ h3 {
 }
 
 .comment_btn {
-    margin-right: 20px;
+    margin-right: 100px;
+}
+
+.btnOnClick {
+    padding: 10px 10px;
+    border-radius: 20px;
+    outline: none;
+    border: 1px solid var(--color-1);
+}
+
+.btnOnClick:hover {
+    color: white;
+    background-color: #012f33;
 }
 
 .vote_btns {
@@ -265,12 +311,134 @@ h3 {
 }
 
 .post {
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .post .post-image {
     max-width: 100%;
     height: auto;
+}
+
+
+/* Comment after like/dislike */
+
+.comment-name {
+    font-weight: bold;
+}
+
+.comment-date {
+    font-size: small;
+}
+
+.comment-text {
+    margin: 10px 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.comments-list h2 {
+    margin: 20px;
+}
+
+.comment-form {
+    width: 900px;
+    margin: 30px 0;
+    padding: 20px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background: #e7d2cc41;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.comments-list {
+    background: #e7d2cc41;
+    padding: 30px;
+    text-align: left;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+/* Modify_account/Login/Forget_acc form */
+
+.form-box h1 {
+    color: black;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.form-box {
+    width: 1100px;
+    padding: 40px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background: #98d7c241;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+select {
+    text-align-last: center;
+}
+
+select,
+.form-box input[type="text"],
+.form-box input[type="password"],
+.comment-form input[type="text"],
+.comment-form input[type="date"],
+textarea {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 5px auto;
+    text-align: center;
+    border: 2px solid var(--color-1);
+    padding: 12px 10px;
+    width: 300px;
+    outline: none;
+    color: blue;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+select:focus,
+textarea:focus,
+.form-box input[type="text"]:focus,
+.form-box input[type="password"]:focus,
+.comment-form input[type="text"]:focus,
+.comment-form input[type="date"]:focus {
+    width: 360px;
+    border-color: #189AB4;
+}
+
+.form-box input[type="submit"],
+.comment-form input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #189AB4;
+    padding: 12px 40px;
+    outline: none;
+    color: black;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.form-box input[type="submit"]:hover,
+.comment-form input[type="submit"]:hover {
+    background: #189AB4;
+    color: white;
 }
 
 
@@ -285,23 +453,20 @@ h3 {
     bottom: 0;
     padding: 10px;
     text-align: center;
+    overflow: auto;
 }
 
 
-/* Media Query: Medium Smartphone (Vertical), starting from 480px */
+/* Media Query: Medium to Small Smartphone (Vertical), starting from 768px */
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 768px) {
     body {
         min-height: unset;
         width: 100vw;
         font-size: 16px;
     }
-    #container {
-        box-shadow: none;
-    }
-    .primary-icon {
-        width: 50px;
-        height: 60px;
+    #middle-page {
+        margin: 10px;
     }
     .nav-toggler {
         display: flex;
@@ -347,8 +512,32 @@ h3 {
     .card h3 {
         margin-top: 50px;
     }
+    .card-image {
+        width: 280px;
+        height: 80px;
+    }
     .post .post-image {
         width: 400px;
         height: auto;
+    }
+    .username {
+        margin-left: 0;
+    }
+    /* How to put username under the logo */
+    .logo-user {
+        display: table-cell;
+        vertical-align: auto;
+        align-items: center;
+    }
+    .form-box {
+        width: 400px;
+    }
+    select,
+    .form-box input[type="text"],
+    .form-box input[type="password"],
+    .comment-form input[type="text"],
+    .comment-form input[type="date"],
+    textarea {
+        width: 280px;
     }
 }

@@ -37,14 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 include_once('header.php');
 ?>
-  <h2>Récupérer votre compte avec question secrète:</h2>
-  <?php
-      if (isset($error)) {
-        echo '<div class="alert-danger" role="alert">' . $error . '</div><br>';
-      }
-  ?>
-  <form action="" method="POST">
-    <label for="username">Username:</label><input type="text" name="username">
+  <form class="form-box" action="" method="POST">
+    <h2>Récupérer votre compte avec la question secrète:</h2><br>
+    <?php
+        if (isset($error)) {
+          echo '<div class="alert-danger" role="alert">' . $error . '</div><br>';
+        }
+    ?>
+    <label for="username">Nom d'utilisateur:</label><input type="text" name="username">
     <br>
     <label for="secret_question">Choisir la question secrète que vous avez enregistré: </label><select name="secret_question" id="secret_question">
       <option value="">--Choisir une option--</option>
@@ -53,7 +53,7 @@ include_once('header.php');
       <option value="Où se trouve votre ville natale?">Où se trouve votre ville natale?</option>
     </select><br>
     <label for="answer">Votre réponse que vous avez enregistrée: </label><input type="text" name="answer" placeholder="Entrer votre réponse"><br>
-    <input type="submit" name="recover" value="Récupérer mon compte">
+    <input type="submit" name="recover" value="Récupérer Mon Compte">
   </form>
 <?php
 include_once('footer.php');

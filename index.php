@@ -15,7 +15,7 @@ if ($req->rowCount() == 0) {
     include_once('header.php');?>
     <section class="gbaf-description">
       <article>
-        <p><strong>Le Groupement Banque Assurance Français</strong>(GBAF) est une fédération
+        <h1>Le Groupement Banque Assurance Français</h1><p>(GBAF) est une fédération
         représentant les 6 grands groupes français :</p>
         <ul>
           <li>BNP Paribas ;</li>
@@ -33,9 +33,6 @@ if ($req->rowCount() == 0) {
         sur les partenaires et acteurs du groupe ainsi que sur les produits et services
         bancaires et financiers.
         Chaque salarié pourra ainsi poster un commentaire et donner son avis.</p>
-      </article>
-      <br>
-      <hr>
       <br>
     </section>
     <?php foreach ($row as $entry) {

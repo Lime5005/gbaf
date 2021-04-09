@@ -26,7 +26,7 @@
     $error = null;
     try {
       if ($req->rowCount() == 0) {
-        throw new Exception("Username/mot de passe non trouvé");
+        throw new Exception("Username/mot de passe non valide");
       } else {
         // $row = all the info as an object
         $row = $req->fetch(PDO::FETCH_ASSOC);
@@ -55,23 +55,22 @@
   }
   include_once('header.php');
 ?>
-
-    <h1>S'identifier:</h1>
-    <h3>Nouveau salarié? &nbsp;<a href="inscription.php">S'inscrire</a></h3>
-    <h4>Entrer votre nom d'utilisateur et mots de passe</h4>
-    <?php
-      if (isset($error)) {
-        echo '<div class="alert-danger" role="alert">' . $error . '</div><br>';
-      }
-    ?>
-    <form action="" method="POST">
+    <form class="form-box" action="" method="POST">
+      <h1>S'identifier:</h1>
+      <h3>Nouveau salarié? &nbsp;<a href="inscription.php">S'inscrire</a></h3><br>
+      <h4>Entrer votre nom d'utilisateur et votre mot de passe</h4><br>
+      <?php
+        if (isset($error)) {
+          echo '<div class="alert-danger" role="alert">' . $error . '</div><br>';
+        }
+      ?>
       <label for="username">Nom d'utilisateur: </label>
       <input type="text" name="username">
       <br>
       <label for="password">Mot de passe: </label>
-      <input type="password" name="password">
-      <p><a href="forget_password.php">Mot de passe oublié?</a></p>
-      <input type="checkbox" name="remember_me">Rester connecté<br>
+      <input type="password" name="password"><br>
+      <p><a href="forget_password.php">Mot de passe oublié?</a></p><br>
+      <input type="checkbox" name="remember_me">&nbsp;Rester connecté<br>
       <input type="submit" name="submit" value="S'identifier">
       <br>
     </form>

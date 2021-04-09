@@ -26,13 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 include_once('header.php');
 ?>
 
-  <h1>Bienvenue:</h1>
-  <h3>Déjà salarié? <a href="login.php">S'identifier</a></h3>
-  <form action="" method="POST">
+  <form class="form-box" action="" method="POST">
+    <h1>Bienvenue:</h1>
+    <h3>Déjà salarié? <a href="login.php">S'identifier</a></h3><br>
     <?php
       if (isset($success)) {
         echo '<div class="alert-success" role="alert">votre compte a bien été créé!</div>';
-        echo '<div><a href="login.php">Connectez vous dès maintenant</a></div><br>';
+        echo '<div><a href="login.php">Connectez-vous dès maintenant</a></div><br>';
       }
       if (isset($error)) {
         echo '<div class="alert-danger" role="alert">' . $error . '</div>';

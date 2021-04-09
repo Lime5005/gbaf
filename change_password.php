@@ -73,20 +73,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 include_once('header.php');
 ?>
 
-  <h1>Ajouter un nouveau mot de passe:</h1>
-  <p>(Ou tous les champs nécessaires)</p>
+  <form class="form-box" action="" method="POST">
+    <h1>Ajouter un nouveau mot de passe:</h1>
+    <p>(Ou tous les champs nécessaires)</p><br>
 
-  <?php
-      if (isset($error)) {
-        echo '<div class="alert-danger" role="alert">' . $error . '</div><br>';
-      }
-  ?>
-  <form action="" method="POST">
-    <label for="lastname">Nouveau nom: </label><input type="text" name="lastname"><br>
-    <label for="firstname">Nouveau prénom: </label><input type="text" name="firstname"><br>
-    <label for="username">Nouveau nom d'utilisateur: </label><input type="text" name="username" value="<?php if(isset($username)) echo $username; ?>"><br>
+    <?php
+        if (isset($error)) {
+          echo '<div class="alert-danger" role="alert">' . $error . '</div><br>';
+        }
+    ?>
+    <label for="lastname">Nouveau nom(Entre 2 à 10 charactères): </label><input type="text" name="lastname"><br>
+    <label for="firstname">Nouveau prénom(Entre 2 à 10 charactères): </label><input type="text" name="firstname"><br>
+    <label for="username">Nouveau nom d'utilisateur(Entre 2 à 10 charactères): </label><input type="text" name="username" value="<?php if(isset($username)) echo $username; ?>"><br>
 
-    <label for="password">Nouveau mot de passe: </label><input type="password" name="password"><br>
+    <label for="password">Nouveau mot de passe(Entre 3 à 10 charactères): </label><input type="password" name="password"><br>
 
     <label for="secret_question">Choisir une question secrete: </label>
     <select name="secret_question" id="secret_question">
@@ -95,7 +95,7 @@ include_once('header.php');
       <option value="Quel est le nom de votre mère?">Quel est le nom de votre mère?</option>
       <option value="Où se trouve votre ville natale?">Où se trouve votre ville natale?</option>
     </select><br>
-    <label for="answer">Votre réponse: </label><input type="text" name="answer" value="<?= $answer ?>"><br>
+    <label for="answer">Votre réponse(Plus que 2 charactères): </label><input type="text" name="answer" value="<?= $answer ?>"><br>
     <input type="submit" name="recover" value="Enregistrer">
   </form>
 <?php

@@ -60,29 +60,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 include_once('header.php');
 ?>
+    <form class="form-box" action="" method="POST">
+      <h1>Modifier votre compte:</h1>
+      <?php
+          if (isset($error)) {
+            echo '<div class="alert-danger" role="alert">' . $error . '</div><br>';
+          }
+      ?>
+      <label for="lastname">Nouveau nom(Entre 2 à 10 charactères): </label><br>
+      <input type="text" name="lastname" value="<?php if(isset($lastname)) echo $lastname; ?>"><br>
+      <label for="firstname">Nouveau prénom(Entre 2 à 10 charactères): </label><br>
+      <input type="text" name="firstname" value="<?php if(isset($firstname)) echo $firstname; ?>"><br>
+      <label for="username">Nouveau nom d'utilisateur(Entre 2 à 10 charactères): </label><br>
+      <input type="text" name="username" value="<?php if(isset($username)) echo $username; ?>"><br>
 
-  <h1>Modifier votre compte:</h1>
-  <?php
-      if (isset($error)) {
-        echo '<div class="alert-danger" role="alert">' . $error . '</div><br>';
-      }
-  ?>
-  <form action="" method="POST">
-    <label for="lastname">Nouveau nom: </label><input type="text" name="lastname" value="<?php if(isset($lastname)) echo $lastname; ?>"><br>
-    <label for="firstname">Nouveau prénom: </label><input type="text" name="firstname" value="<?php if(isset($firstname)) echo $firstname; ?>"><br>
-    <label for="username">Nouveau nom d'utilisateur: </label><input type="text" name="username" value="<?php if(isset($username)) echo $username; ?>"><br>
+      <label for="password">Nouveau mot de passe(Entre 3 à 10 charactères): </label><br>
+      <input type="password" name="password"><br>
 
-    <label for="password">Nouveau mot de passe: </label><input type="password" name="password"><br>
-
-    <label for="secret_question">Choisir une question secrete: </label><select name="secret_question" id="secret_question">
-      <option value="">--Choisir une option--</option>
-      <option value="Quelle est votre couleur préférée?">Quelle est votre couleur préférée?</option>
-      <option value="Quel est le nom de votre mère?">Quel est le nom de votre mère?</option>
-      <option value="Où se trouve votre ville natale?">Où se trouve votre ville natale?</option>  
-    </select><br>
-    <label for="answer">Votre réponse: </label><input type="text" name="answer" value="<?= $row['answer']; ?>"><br>
-    <input type="submit" name="modify" value="Modifier">
-  </form>
+      <label for="secret_question">Choisir une question secrete: </label><br>
+      <select name="secret_question" id="secret_question">
+        <option value="">--Choisir une option--</option>
+        <option value="Quelle est votre couleur préférée?">Quelle est votre couleur préférée?</option>
+        <option value="Quel est le nom de votre mère?">Quel est le nom de votre mère?</option>
+        <option value="Où se trouve votre ville natale?">Où se trouve votre ville natale?</option>
+      </select><br>
+      <label for="answer">Votre réponse(Plus que 2 charactères): </label><br>
+      <input type="text" name="answer" value="<?= $row['answer']; ?>"><br>
+      <input type="submit" name="modify" value="Modifier">
+    </form>
 <?php
 include_once('footer.php');
 ?>
