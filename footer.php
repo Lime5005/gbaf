@@ -1,9 +1,8 @@
 </div>
 </div>
-<hr>
-  <div id="bottom-footer">
-    © 2021 | Mentions légales | Contact |
-  </div>
 </div>
+<footer id="bottom-footer">
+  © 2021 | Mentions légales | Contact |
+</footer>
 </body>
 </html>

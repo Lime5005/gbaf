@@ -18,7 +18,7 @@
 
       $vote = $reqVote->fetch();
 
-      // Get the acteur
+      // Get the acteur by id
       $req = $connection->prepare('SELECT * FROM acteurs WHERE id=?');
       $req->execute([$_GET['acteur']]);
       $data = $req->fetch();
@@ -26,8 +26,11 @@
       include_once('header.php');
       // var_dump($data);
       ?>
+      <!-- Acteur's post -->
         <div class="post">
-          <p><img class="post-image" src="images/<?php echo $data['logo']; ?>" alt="logo"></p>
+          <div class="large-logo">
+            <img class="post-image" src="images/<?php echo $data['logo']; ?>" alt="logo">
+          </div>
           <h2>
             <?php echo $data['name']; ?>
           </h2>
@@ -35,6 +38,7 @@
             <?php echo nl2br(htmlspecialchars($data['description'])); ?>
           </p>
           <br>
+          <!-- Votes and comment btn -->
           <div class="vote-comment-btns">
             <div class="vote_btns <?= Vote::getClass($vote) ?>">
               <form action="insertVote.php?ref=acteurs&ref_id=<?= $data['id']; ?>&vote=1" method="POST">
@@ -48,6 +52,7 @@
                 </button>
               </form>
             </div>
+            <!-- Comment btn -->
             <div class="comment_btn">
               <button class="btnOnClick" onclick="myComment()">Nouveau Commentaire</button>
             </div>
@@ -59,7 +64,6 @@
               unset($_SESSION['error']);
             }
           ?>
-
         </div>
         <script>
           function myComment() {
@@ -71,6 +75,7 @@
             }
           }
         </script>
+        <!-- Comment form -->
         <div id="comment" style="display: none">
           <form class="comment-form" action="insertPost.php" method="POST">
               <label for="author">Prénom:</label><br><input type="text" name="author" id="author" value="<?= $firstname ?>"><br>
@@ -79,7 +84,8 @@
               <label for="comment">Votre Commentaire:</label><br><textarea name="comment" id="comment" cols="80" rows="8"></textarea><br>
               <input type="submit" value="Envoyer">
           </form>
-          </div>
+        </div>
+          <!-- Comments list -->
         <div class="comments-list">
           <h2>Commentaires</h2>
           <?php
@@ -97,9 +103,10 @@
               <p><?php echo '<i class="fas fa-user-circle"></i> ' . '<span class="comment-name">' .
               $data['first_name'] . '</span>'; ?><span class="comment-date"><?php echo '&nbsp;&nbsp;' . $data['date']; ?></span></p>
               <p class="comment-text"><?php echo htmlspecialchars($data['comment']) ?></p>
-        <?php }
-        $req->closeCursor();
-        ?></div><?php
+            <?php }
+            $req->closeCursor();
+            ?>
+        </div><?php
     }
 include_once('footer.php');
 ?>

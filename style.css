@@ -86,11 +86,12 @@ ul {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     text-transform: capitalize;
-    transition: all 0.5s ease;
+    transition: transform 0.2s ease-in;
 }
 
 .header .nav ul li a:hover {
     border-bottom: 2px solid #fff;
+    transform: translateY(-3px);
 }
 
 .header .nav ul li a:hover,
@@ -119,6 +120,9 @@ ul {
     margin-right: 15px;
 }
 
+
+/* create 3 lines */
+
 .nav-toggler span {
     display: block;
     height: 2px;
@@ -136,9 +140,6 @@ ul {
     background-color: var(--color-1);
     left: 0;
 }
-
-
-/* create 3 lines */
 
 .nav-toggler span::before {
     top: -6px;
@@ -191,8 +192,12 @@ ul {
     color: #333;
     border-radius: 10px;
     box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    margin: 10px;
+    padding: 30px;
+    margin: 20px;
+}
+
+.gbaf-description h1 {
+    text-align: center;
 }
 
 .gbaf-description ul {
@@ -212,10 +217,12 @@ ul {
 }
 
 .card {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 10px;
     margin: 20px 10px;
     background-color: #d4f1f480;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     transition: 0.3s;
 }
@@ -223,11 +230,11 @@ ul {
 .card-image {
     position: relative;
     width: 400px;
-    height: 135px;
+    height: 130px;
 }
 
 .card img {
-    border-radius: 5px 0 0 0;
+    border-radius: 5px;
     position: absolute;
     height: auto;
     width: 100%;
@@ -242,7 +249,24 @@ ul {
 }
 
 .card .card-link {
+    border: 0;
+    padding: 10px 30px;
+    margin: 10px 20px 10px 0;
     float: right;
+    background-color: transparent;
+    border: 1px solid var(--color-1);
+    text-decoration: none;
+    border-radius: 24px;
+    color: black;
+}
+
+.card .card-link:hover {
+    background-color: var(--color-1);
+    color: #fff;
+}
+
+.card .card-link:focus {
+    outline: none;
 }
 
 
@@ -250,11 +274,25 @@ ul {
 
 p {
     font-family: 'IBM Plex Serif', serif;
+    padding: 10px 0;
 }
 
-h2,
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    margin: 20px;
+    font-size: 2rem;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    margin: 20px;
+    font-size: 1.5rem;
+}
+
 h3 {
     font-family: 'Montserrat', sans-serif;
+    margin: 10px;
+    font-size: 1.2rem;
 }
 
 .vote_like,
@@ -283,7 +321,7 @@ h3 {
 }
 
 .comment_btn {
-    margin-right: 100px;
+    margin-right: 120px;
 }
 
 .btnOnClick {
@@ -312,13 +350,24 @@ h3 {
 
 .post {
     display: flex;
+    padding: 40px;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.large-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.post h2 {
+    text-align: center;
 }
 
 .post .post-image {
     max-width: 100%;
     height: auto;
+    border-radius: 10px;
 }
 
 
@@ -342,8 +391,10 @@ h3 {
 }
 
 .comment-form {
-    width: 900px;
-    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    margin-bottom: 30px;
     padding: 20px;
     position: relative;
     top: 50%;
@@ -373,7 +424,6 @@ h3 {
 }
 
 .form-box {
-    width: 1100px;
     padding: 40px;
     position: relative;
     top: 50%;
@@ -395,6 +445,7 @@ select,
 .comment-form input[type="text"],
 .comment-form input[type="date"],
 textarea {
+    width: 400px;
     border: 0;
     background: none;
     display: block;
@@ -402,7 +453,6 @@ textarea {
     text-align: center;
     border: 2px solid var(--color-1);
     padding: 12px 10px;
-    width: 300px;
     outline: none;
     color: blue;
     border-radius: 24px;
@@ -415,7 +465,7 @@ textarea:focus,
 .form-box input[type="password"]:focus,
 .comment-form input[type="text"]:focus,
 .comment-form input[type="date"]:focus {
-    width: 360px;
+    width: 450px;
     border-color: #189AB4;
 }
 
@@ -453,17 +503,38 @@ textarea:focus,
     bottom: 0;
     padding: 10px;
     text-align: center;
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 
-/* Media Query: Medium to Small Smartphone (Vertical), starting from 768px */
+/* Media Query: iPad (Vertical), starting from 768px */
 
 @media screen and (max-width: 768px) {
+    .card-image {
+        max-width: 220px;
+    }
+    .card {
+        grid-template-columns: 1fr 2fr;
+    }
+    .comment-form,
+    .form-box {
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+    }
+}
+
+
+/* Small mobile: iPhone */
+
+@media screen and (max-width: 480px) {
     body {
         min-height: unset;
         width: 100vw;
         font-size: 16px;
+    }
+    .logo-user {
+        padding: 20px;
     }
     #middle-page {
         margin: 10px;
@@ -507,30 +578,41 @@ textarea:focus,
         transform: rotate(-45deg);
     }
     .card {
-        flex-direction: column;
-    }
-    .card h3 {
-        margin-top: 50px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2.5fr;
     }
     .card-image {
-        width: 280px;
-        height: 80px;
+        text-align: center;
+        width: 50%;
+        height: auto;
+        margin: 20px 10px 50px 0;
+        padding: 10px;
     }
     .post .post-image {
         width: 400px;
         height: auto;
     }
     .username {
-        margin-left: 0;
+        margin: 0;
     }
     /* How to put username under the logo */
     .logo-user {
         display: table-cell;
         vertical-align: auto;
         align-items: center;
+        margin-left: 50px;
     }
+    .comment-form,
     .form-box {
-        width: 400px;
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+        padding: 20px;
+        width: 300px;
+    }
+    .comment-list {
+        align-items: center;
+        padding: 100px;
     }
     select,
     .form-box input[type="text"],
@@ -538,6 +620,27 @@ textarea:focus,
     .comment-form input[type="text"],
     .comment-form input[type="date"],
     textarea {
-        width: 280px;
+        width: 200px;
+    }
+    select:focus,
+    textarea:focus,
+    .form-box input[type="text"]:focus,
+    .form-box input[type="password"]:focus,
+    .comment-form input[type="text"]:focus,
+    .comment-form input[type="date"]:focus {
+        width: 250px;
+        border-color: #189AB4;
+    }
+    .alert-danger {
+        position: relative;
+        top: 50%;
+        left: 10%;
+        width: 200px;
+        padding: 10px 0;
+        margin: 10px;
+        background-color: red;
+        border-radius: 26px;
+        color: white;
+        text-align: center;
     }
 }

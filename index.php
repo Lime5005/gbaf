@@ -28,6 +28,8 @@ if ($req->rowCount() == 0) {
         <p>Même s’il existe une forte concurrence entre ces entités, elles vont toutes travailler
         de la même façon pour gérer près de 80 millions de comptes sur le territoire
         national.</p>
+        <hr>
+        <h2>GBAF</h2>
         <p>Nous souhaitons proposer aux salariés des grands groupes
         français un point d’entrée unique, répertoriant un grand nombre d’informations
         sur les partenaires et acteurs du groupe ainsi que sur les produits et services
@@ -35,18 +37,19 @@ if ($req->rowCount() == 0) {
         Chaque salarié pourra ainsi poster un commentaire et donner son avis.</p>
       <br>
     </section>
-    <?php foreach ($row as $entry) {
+    <!-- List of all the acteurs -->
+      <?php foreach ($row as $entry) {
       ?>
-      <div class="card">
+      <section class="card">
         <div class="card-image">
           <img src="images/<?php echo $entry['logo']; ?>" alt="Acteur-image">
         </div>
         <div class="card-content">
           <h3><?php echo $entry['name']; ?></h3>
           <p><?php echo $entry['detail']; ?></p>
-          <span><a class="card-link" href="acteur.php?acteur=<?php echo $entry['id']; ?>">Afficher la suite</a></span>
+          <span><a class="card-link" href="acteur.php?acteur=<?php echo $entry['id']; ?>">Lire la suite</a></span>
         </div>
-      </div>
+      </section>
     <?php }
   }
 }

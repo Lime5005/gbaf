@@ -19,8 +19,8 @@ des différentes banques françaises.">
     <div class="row align-items-center justify-content-around">
       <div class="logo-user">
         <a href="index.php"><img src="images/gbaf.png" alt="logo" class="image-keep-ratio" width="50" height="50"></a>
-        <div class="row align-items-center username">
-          <?php if(isset($firstname) && isset($lastname)) echo '<span><i class="fas fa-user-alt"></i>&nbsp; ' . $lastname . ' ' . $firstname . '</span>';?>
+        <div class="row align-items-center">
+          <?php if(isset($firstname) && isset($lastname)) echo '<span class="username"><i class="fas fa-user-alt"></i>&nbsp; ' . $lastname . ' ' . $firstname . '</span>';?>
         </div>
       </div>
       <input type="checkbox" id="nav-check">
