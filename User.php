@@ -74,8 +74,8 @@ class User {
     if (!isset($this->lastName) || !isset($this->firstName) || !isset($this->userName) || !isset($this->password) || !isset($this->secretQuestion) || !isset($this->answer)) {
       throw new Exception("Valeurs non valides");
     }
-    
-   include_once('connect.php');
+
+    include_once('connect.php');
 
     $sql = 'INSERT INTO accounts (last_name, first_name, username, password, secret_question, answer) VALUES (?, ?, ?, ?, ?, ?)';
     $statement = $connection->prepare($sql);

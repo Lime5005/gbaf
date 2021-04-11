@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once('User.php');
 
 $success = null;
@@ -31,8 +31,9 @@ include_once('header.php');
     <h3>Déjà salarié? <a href="login.php">S'identifier</a></h3><br>
     <?php
       if (isset($success)) {
-        echo '<div class="alert-success" role="alert">votre compte a bien été créé!</div>';
-        echo '<div><a href="login.php">Connectez-vous dès maintenant</a></div><br>';
+        $_SESSION['success'] = 'ok';
+        header('Location: login.php?success=' . $_SESSION['success'] . '');
+        exit();
       }
       if (isset($error)) {
         echo '<div class="alert-danger" role="alert">' . $error . '</div>';

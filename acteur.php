@@ -27,7 +27,7 @@
       // var_dump($data);
       ?>
       <!-- Acteur's post -->
-        <div class="post">
+        <article class="post">
           <div class="large-logo">
             <img class="post-image" src="images/<?php echo $data['logo']; ?>" alt="logo">
           </div>
@@ -64,7 +64,7 @@
               unset($_SESSION['error']);
             }
           ?>
-        </div>
+        </article>
         <script>
           function myComment() {
             let form = document.getElementById("comment");

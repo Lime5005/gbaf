@@ -163,27 +163,29 @@ ul {
 .alert-success {
     position: relative;
     top: 50%;
-    left: 27%;
-    width: 460px;
+    left: 33%;
+    width: 400px;
     padding: 10px 0;
     margin: 10px;
     background-color: green;
-    border-radius: 26px;
+    border-radius: 24px;
     color: white;
     text-align: center;
+    outline: none;
 }
 
 .alert-danger {
     position: relative;
     top: 50%;
-    left: 27%;
-    width: 460px;
+    left: 33%;
+    width: 400px;
     padding: 10px 0;
     margin: 10px;
     background-color: red;
     border-radius: 26px;
     color: white;
     text-align: center;
+    outline: none;
 }
 
 
@@ -431,14 +433,9 @@ h3 {
 .form-box {
     padding: 40px;
     position: relative;
-    /* top: 50%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    background: #98d7c241;*/
     background-color: transparent;
     text-align: center;
-    /* border-radius: 10px;
-    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2); */
+    /* Take all the place in the page */
     z-index: 100;
 }
 
@@ -542,6 +539,30 @@ textarea:focus,
         box-shadow: none;
         border: none;
         padding-top: 50px;
+    }
+    .alert-success {
+        position: relative;
+        top: 50%;
+        left: 17%;
+        width: 400px;
+        padding: 10px 0;
+        margin: 10px;
+        background-color: green;
+        border-radius: 26px;
+        color: white;
+        text-align: center;
+    }
+    .alert-danger {
+        position: relative;
+        top: 50%;
+        left: 17%;
+        width: 400px;
+        padding: 10px 0;
+        margin: 10px;
+        background-color: red;
+        border-radius: 26px;
+        color: white;
+        text-align: center;
     }
 }
 
@@ -664,7 +685,7 @@ textarea:focus,
     .alert-danger {
         position: relative;
         top: 50%;
-        left: 10%;
+        left: 15%;
         width: 200px;
         padding: 10px 0;
         margin: 10px;
@@ -676,7 +697,7 @@ textarea:focus,
     .alert-success {
         position: relative;
         top: 50%;
-        left: 10%;
+        left: 15%;
         width: 200px;
         padding: 10px 0;
         margin: 10px;

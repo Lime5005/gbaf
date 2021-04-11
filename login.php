@@ -56,6 +56,13 @@
   include_once('header.php');
 ?>
     <form class="form-box" action="" method="POST">
+      <?php
+        if(isset($_SESSION['success']) && ($_SESSION['success'] == 'ok')) {
+          echo '<div class="alert-success" role="alert">Votre compte a bien été créé!</div>';
+          echo '<div class="alert-success">Connectez-vous dès maintenant&nbsp;&nbsp;&nbsp;<i class="fas fa-hand-point-down"></i></div><br>';
+          unset($_SESSION['success']);
+        }
+      ?>
       <h1>S'identifier:</h1>
       <h3>Nouveau salarié? &nbsp;<a href="inscription.php">S'inscrire</a></h3><br>
       <h4>Entrer votre nom d'utilisateur et votre mot de passe</h4><br>
