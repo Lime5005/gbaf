@@ -1,6 +1,6 @@
 <?php
 
-    require_once('session.php');
+    include_once('session.php');
 
     $today = date("Y-m-d");
 
@@ -8,8 +8,8 @@
 
       setcookie("acteur_id", $_GET['acteur'], time()+(60*60*24));
 
-      require_once('connect.php');
-      require_once('Vote.php');
+      include_once('connect.php');
+      include_once('Vote.php');
 
       // Show if the user voted for this acteur, green or red
       $vote = false;

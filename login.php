@@ -19,7 +19,7 @@
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require_once('connect.php');
+    include_once('connect.php');
     $req = $connection->prepare('SELECT last_name, first_name, username, password FROM accounts WHERE username=?');
     $req->execute([$_POST['username']]);
 

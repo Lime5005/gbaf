@@ -1,8 +1,8 @@
 <?php
 
-    require_once('session.php');
+    include_once('session.php');
 
-    require_once('connect.php');
+    include_once('connect.php');
 
     if ($_SERVER['REQUEST_METHOD'] != 'POST') {
       http_response_code(403); // Status Code: 403 Forbidden
@@ -15,7 +15,7 @@
     // print_r($userData['id']);
     $userId = $userData['id'];
 
-    require_once('Vote.php');
+    include_once('Vote.php');
 
     $vote = new Vote($connection);
 

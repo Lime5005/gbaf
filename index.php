@@ -1,9 +1,9 @@
 <?php
 
-require_once('session.php');
+include_once('session.php');
 
 // Find and list down all the acteurs
-require_once('connect.php');
+include_once('connect.php');
 $req = $connection->prepare('SELECT id, logo, name, SUBSTRING(description, 1, 220) as detail FROM acteurs');
 $req->execute();
 if ($req->rowCount() == 0) {

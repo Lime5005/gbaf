@@ -14,7 +14,7 @@ if (!isset($username) || !isset($secretQuestion) || !isset($answer)) {
   exit();
 }
 
-require_once('connect.php');
+include_once('connect.php');
 
 // Find id of the user:
 $req = $connection->prepare('SELECT * FROM accounts WHERE username=? AND secret_question=? AND answer=?');

@@ -433,7 +433,7 @@ h3 {
     position: relative;
     /* top: 50%;
     left: 50%;
-    transform: translate(-50%, 0%); 
+    transform: translate(-50%, 0%);
     background: #98d7c241;*/
     background-color: transparent;
     text-align: center;
@@ -509,6 +509,7 @@ textarea:focus,
     left: 0;
     padding: 10px;
     text-align: center;
+    /* How to keep footer at the bottom: give `margin-bottom: -50px` to `#container` and here add 50px */
     height: 50px;
 }
 

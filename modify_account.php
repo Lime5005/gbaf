@@ -1,8 +1,8 @@
 <?php
 
-require_once('session.php');
+include_once('session.php');
 
-require_once('connect.php');
+include_once('connect.php');
 
 // Find id of the user:
 $req = $connection->prepare('SELECT * FROM accounts WHERE last_name=? AND first_name=? AND username=?');

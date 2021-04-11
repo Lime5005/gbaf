@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       } else if (!isset($_POST['secret_question']) || strlen(($_POST['answer'])) < 3) {
         throw new Exception("Question secrète ou réponse non valide");
       } else {
-        require_once('connect.php');
+        include_once('connect.php');
 
         $req = $connection->prepare('SELECT * FROM accounts WHERE username=? AND secret_question=? AND answer=? LIMIT 1');
         $req->execute([$_POST['username'], $_POST['secret_question'], $_POST['answer']]);
