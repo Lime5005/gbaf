@@ -10,7 +10,13 @@ html,
     padding: 0;
 }
 
+html {
+    height: -webkit-fill-available;
+}
+
 body {
+    height: 100vh;
+    min-height: -webkit-fill-available;
     line-height: 1.5;
     background-color: #ffffff;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%232035d4' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
@@ -18,7 +24,9 @@ body {
 }
 
 #container {
+    min-height: 100%;
     position: relative;
+    margin: 0 auto -50px;
 }
 
 ul {
@@ -212,6 +220,7 @@ ul {
 
 #middle-page {
     margin: 30px;
+    margin-bottom: 100px;
     flex-direction: row;
     justify-content: center;
 }
@@ -220,7 +229,7 @@ ul {
     display: grid;
     grid-template-columns: 1fr 2fr;
     padding: 10px;
-    margin: 20px 10px;
+    margin: 30px 50px;
     background-color: #d4f1f480;
     box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -386,10 +395,6 @@ h3 {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.comments-list h2 {
-    margin: 20px;
-}
-
 .comment-form {
     display: flex;
     flex-direction: column;
@@ -426,13 +431,15 @@ h3 {
 .form-box {
     padding: 40px;
     position: relative;
-    top: 50%;
+    /* top: 50%;
     left: 50%;
-    transform: translate(-50%, 0%);
-    background: #98d7c241;
+    transform: translate(-50%, 0%); 
+    background: #98d7c241;*/
+    background-color: transparent;
     text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    /* border-radius: 10px;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2); */
+    z-index: 100;
 }
 
 select {
@@ -494,24 +501,36 @@ textarea:focus,
 
 /* footer */
 
-#bottom-footer {
-    width: 100%;
+#footer {
+    width: 100vw;
     position: relative;
     color: white;
     background: #012f33;
     left: 0;
-    bottom: 0;
     padding: 10px;
     text-align: center;
-    /* overflow: auto; */
+    height: 50px;
+}
+
+#footer ul {
+    display: flex;
+    justify-content: center;
 }
 
 
 /* Media Query: iPad (Vertical), starting from 768px */
 
-@media screen and (max-width: 768px) {
+@media(max-width: 768px) {
+    body {
+        width: 100vw;
+        height: 100vh;
+    }
+    .header .nav ul {
+        margin: 10px;
+    }
     .card-image {
-        max-width: 220px;
+        max-width: 200px;
+        margin-top: 60px;
     }
     .card {
         grid-template-columns: 1fr 2fr;
@@ -521,23 +540,29 @@ textarea:focus,
         background-color: transparent;
         box-shadow: none;
         border: none;
+        padding-top: 50px;
     }
 }
 
 
 /* Small mobile: iPhone */
 
-@media screen and (max-width: 480px) {
+@media(max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
     body {
-        min-height: unset;
+        height: 100vh;
         width: 100vw;
+        /* To keep lines/rows tight together */
+        /* line-height: 15px; */
         font-size: 16px;
     }
     .logo-user {
         padding: 20px;
     }
     #middle-page {
-        margin: 10px;
+        margin-bottom: 80px;
     }
     .nav-toggler {
         display: flex;
@@ -580,13 +605,15 @@ textarea:focus,
     .card {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 2.5fr;
+        margin: 20px 30px;
     }
     .card-image {
         text-align: center;
-        width: 50%;
+        width: 80%;
         height: auto;
-        margin: 20px 10px 50px 0;
-        padding: 10px;
+        margin-top: 10px;
+        margin-left: -70px;
+        padding-top: 10px;
     }
     .post .post-image {
         width: 400px;
@@ -607,12 +634,14 @@ textarea:focus,
         background-color: transparent;
         box-shadow: none;
         border: none;
-        padding: 20px;
+        padding: 0;
+        /* Best width for iPhone X */
         width: 300px;
+        margin-bottom: 150px;
     }
     .comment-list {
         align-items: center;
-        padding: 100px;
+        padding: 50px;
     }
     select,
     .form-box input[type="text"],
@@ -639,6 +668,18 @@ textarea:focus,
         padding: 10px 0;
         margin: 10px;
         background-color: red;
+        border-radius: 26px;
+        color: white;
+        text-align: center;
+    }
+    .alert-success {
+        position: relative;
+        top: 50%;
+        left: 10%;
+        width: 200px;
+        padding: 10px 0;
+        margin: 10px;
+        background-color: green;
         border-radius: 26px;
         color: white;
         text-align: center;
