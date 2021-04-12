@@ -655,7 +655,7 @@ textarea:focus,
         box-shadow: none;
         border: none;
         padding: 0;
-        margin-bottom: 50px;
+        margin-bottom: 150px;
     }
     .comment-list {
         align-items: center;
