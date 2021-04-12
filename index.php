@@ -4,7 +4,7 @@ include_once('session.php');
 
 // Find and list down all the acteurs
 include_once('connect.php');
-$req = $connection->prepare('SELECT id, logo, name, SUBSTRING(description, 1, 220) as detail FROM acteurs');
+$req = $connection->prepare('SELECT id, logo, name, SUBSTRING(description, 1, 120) as detail FROM acteurs');
 $req->execute();
 if ($req->rowCount() == 0) {
   echo "<br>Pas d'acteur.<br />";
@@ -25,11 +25,13 @@ if ($req->rowCount() == 0) {
           <li>Société Générale ;</li>
           <li>La Banque Postale.</li>
         </ul>
-        <p>Même s’il existe une forte concurrence entre ces entités, elles vont toutes travailler
-        de la même façon pour gérer près de 80 millions de comptes sur le territoire
-        national.</p>
+        <p>Le GBAF est le représentant de la profession bancaire et des       assureurs sur tous
+        les axes de la réglementation financière française. Sa mission est de   promouvoir
+        l'activité bancaire à l’échelle nationale. C’est aussi un interlocuteur privilégié des
+        pouvoirs publics.
+        </p>
         <hr>
-        <h2>GBAF</h2>
+        <h2>FPDC</h2>
         <p>Nous souhaitons proposer aux salariés des grands groupes
         français un point d’entrée unique, répertoriant un grand nombre d’informations
         sur les partenaires et acteurs du groupe ainsi que sur les produits et services
