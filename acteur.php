@@ -99,14 +99,18 @@
             ORDER BY date_created DESC");
 
             $req->execute([$_GET['acteur']]);
-            while ($data = $req->fetch()) { ?>
-              <p><?php echo '<i class="fas fa-user-circle"></i> ' . '<span class="comment-name">' .
-              $data['first_name'] . '</span>'; ?><span class="comment-date"><?php echo '&nbsp;&nbsp;' . $data['date']; ?></span></p>
-              <p class="comment-text"><?php echo htmlspecialchars($data['comment']) ?></p>
-            <?php }
-            $req->closeCursor();
-            ?>
-        </div><?php
+            if ($req->rowCount() == 0) {
+              echo "<p>(Pas de commentaire encore)</p>";
+            } else {
+              while ($data = $req->fetch()) { ?>
+                <p><?php echo '<i class="fas fa-user-circle"></i> ' . '<span class="comment-name">' .
+                $data['first_name'] . '</span>'; ?><span class="comment-date"><?php echo '&nbsp;&nbsp;' . $data['date']; ?></span></p>
+                <p class="comment-text"><?php echo htmlspecialchars($data['comment']) ?></p>
+              <?php }
+              $req->closeCursor();
+              ?>
+          </div><?php
+        }
     }
 include_once('footer.php');
 ?>
