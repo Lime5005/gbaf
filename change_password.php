@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
       $newPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-      if (!isset($_POST['secret_question']) || strlen($_POST['answer']) < 3) {
+      if (!isset($_POST['secret_question']) || $_POST['secret_question'] == '' || strlen($_POST['answer']) < 3) {
         throw new Exception("Question secrete ou réponse non valides");
       }
       $newSecretQuestion = $_POST['secret_question'];

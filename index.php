@@ -30,15 +30,10 @@ if ($req->rowCount() == 0) {
         l'activité bancaire à l’échelle nationale. C’est aussi un interlocuteur privilégié des
         pouvoirs publics.
         </p>
-        <hr>
-        <h2>FPDC</h2>
-        <p>Nous souhaitons proposer aux salariés des grands groupes
-        français un point d’entrée unique, répertoriant un grand nombre d’informations
-        sur les partenaires et acteurs du groupe ainsi que sur les produits et services
-        bancaires et financiers.
-        Chaque salarié pourra ainsi poster un commentaire et donner son avis.</p>
-      <br>
+        <br>
+      </article>
     </section>
+    <h2 class="h2-acteurs">Acteurs et Partenaires</h2>
     <!-- List of all the acteurs -->
       <?php foreach ($row as $entry) {
       ?>

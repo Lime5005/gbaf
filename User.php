@@ -71,7 +71,7 @@ class User {
   }
 
   public function saveToDatabase() {
-    if (!isset($this->lastName) || !isset($this->firstName) || !isset($this->userName) || !isset($this->password) || !isset($this->secretQuestion) || !isset($this->answer)) {
+    if (!isset($this->lastName) || !isset($this->firstName) || !isset($this->userName) || !isset($this->password) || !isset($this->secretQuestion) || $this->secretQuestion == '' || !isset($this->answer)) {
       throw new Exception("Valeurs non valides");
     }
 
