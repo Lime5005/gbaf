@@ -77,9 +77,17 @@ class User {
 
     include_once('connect.php');
 
+    $sql = 'SELECT * FROM accounts WHERE username = ?';
+    $statement = $connection->prepare($sql);
+    $statement->execute([$this->userName]);
+    if($statement->rowCount() > 0) {
+      throw new Exception("Ce nom d'utilisateur existe déjà");
+    }
+
     $sql = 'INSERT INTO accounts (last_name, first_name, username, password, secret_question, answer) VALUES (?, ?, ?, ?, ?, ?)';
     $statement = $connection->prepare($sql);
     $statement->execute([$this->lastName, $this->firstName, $this->userName, $this->password, $this->secretQuestion, $this->answer]);
+
   }
 }
 ?>
